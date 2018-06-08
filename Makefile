@@ -9,8 +9,8 @@
 CC = gcc
 
 # define any compile-time flags
-#CFLAGS = -Wall -g
-CFLAGS = -g
+CFLAGS = -Wall -g
+#CFLAGS = -g
 
 # define any directories containing header files other than /usr/include
 #

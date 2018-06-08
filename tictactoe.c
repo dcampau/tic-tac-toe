@@ -1,13 +1,13 @@
 /*************************** START HEADER ***********************************
- File:   tictactoe.c - 
+ File:   tictactoe.c  
 
  Description:
-   This module impliments tictactoe game
+   This module impliments main function of the tictactoe game
 
  Author:   Daniel B. Campau 
 
  Revision History:
-   06/05/18 - Daniel B. Campau, 
+   06/05/18 - DBC
    Original Release
 
  Notes:  
@@ -28,7 +28,6 @@ int main()
 {
   int b_play_again;
   int b_invalid;
-  char resp;
   char resp_str[MAX_BUFF_LEN];
 
   PlayerInitialize();
@@ -43,19 +42,22 @@ int main()
       sprintf(resp_str,"%s",PromptGetStringResponse("\n Play again? [y:n] "));
       if (strlen(resp_str)==1)
       {
-        resp=resp_str[0];
-        if ((resp=='y') || (resp=='Y'))
+        if ((resp_str[0]=='y') || (resp_str[0]=='Y'))
           b_play_again=1;
-        else if ((resp=='n') || (resp=='N'))
+        else if ((resp_str[0]=='n') || (resp_str[0]=='N'))
           b_play_again=0;
         else
           b_invalid=1;
       }
       else
+      {
+        printf("Invalid reply: %s\n",resp_str);
         b_invalid=1;
+      }
     } while (b_invalid);
 
   } while (b_play_again);
+  return 0;
 }
 
 /**************************************************************************/

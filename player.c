@@ -7,8 +7,11 @@
  Author:   Daniel B. Campau 
 
  Revision History:
-   06/05/18 - Daniel B. Campau, 
+   06/06/18 - DBC
    Original Release
+
+   06/07/18 - DBC
+   committed to git
 
  Notes:  
 
@@ -19,7 +22,7 @@
 
 #include "ttt_defs.h"
 
-PLAYER_STRUCT_TYPE player[2];
+PLAYER_STRUCT_TYPE player[PLAYER_COUNT];
 
 /**************************************************************************/
 
@@ -29,9 +32,9 @@ void PlayerInitialize(void)
   sprintf(player[0].name,"player_X");
   player[0].marker='X';
   sprintf(player[1].name,"player_O");
-  player[1].marker='Y';
+  player[1].marker='O';
 
-  for (iplayer=0;iplayer<2;iplayer++)
+  for (iplayer=0;iplayer<PLAYER_COUNT;iplayer++)
   {
     player[iplayer].win_count=0;
     player[iplayer].loss_count=0;
@@ -43,10 +46,8 @@ void PlayerInitialize(void)
 
 void PlayerRegisterWin(int iplayer)
 {
-//  player[iplayer].win_count++;
-//  player[!iplayer].loss_count++;
-  player[0].win_count++;
-  player[1].loss_count++;
+  player[iplayer].win_count++;
+  player[!iplayer].loss_count++;
 }
 
 /**************************************************************************/
@@ -62,7 +63,10 @@ void PlayerRegisterDraw(int iplayer)
 int PlayerGetWinCount(int iplayer)
 {
   if ((iplayer<0) || (iplayer>1))
+  {
     printf("PlayerGetWinCount invalid player index %d\n",iplayer);
+    return -1;
+  }
   else
     return player[iplayer].win_count;
 }
@@ -72,7 +76,10 @@ int PlayerGetWinCount(int iplayer)
 int PlayerGetLossCount(int iplayer)
 {
   if ((iplayer<0) || (iplayer>1))
+  {
     printf("PlayerGetLossCount invalid player index %d\n",iplayer);
+    return -1;
+  }
   else
     return player[iplayer].loss_count;
 }
@@ -82,7 +89,10 @@ int PlayerGetLossCount(int iplayer)
 int PlayerGetDrawCount(int iplayer)
 {
   if ((iplayer<0) || (iplayer>1))
+  {
     printf("PlayerGetDrawCount invalid player index %d\n",iplayer);
+    return -1;
+  }
   else
     return player[iplayer].draw_count;
 }
@@ -105,7 +115,10 @@ char *PlayerGetName(int iplayer)
 int PlayerGetMarker(int iplayer)
 {
   if ((iplayer<0) || (iplayer>1))
+  {
     printf("PlayerGetMarker invalid player index %d\n",iplayer);
+    return '?';
+  }
   else
     return player[iplayer].marker;
 }

@@ -9,7 +9,7 @@ int PlayerGetWinCount(int);
 int PlayerGetLossCount(int);
 int PlayerGetDrawCount(int);
 
-int PlayerGetName(int);
+char *PlayerGetName(int);
 int PlayerGetMarker(int);
 
 #endif

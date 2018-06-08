@@ -1,5 +1,5 @@
 /*************************** START HEADER ***********************************
- File:   utils.c - 
+ File:   utils.c -  utility functions for tic-tac-toe application
 
  Description:
 
@@ -33,6 +33,9 @@ char *PromptGetStringResponse(char *prompt)
   {
     resp[ilen++]=c;
   }
+  // on overflow, flush the rest
+  if (ilen==(MAX_BUFF_LEN-1))
+    while ((c=getchar()) != 0x0a);
 
   resp[ilen]='\0';
   return resp;
@@ -47,14 +50,10 @@ int IntOutOfRange(int val, int min, int max)
   out_of_range = 0;
   
   if(val < min)
-  {
     out_of_range = 1;
-  }
 
   if(val > max)
-  {
     out_of_range = 1; 
-  }
 
   return(out_of_range);
 }
